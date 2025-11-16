@@ -1,0 +1,357 @@
+/* Styles for Mini-game 9: Final Duel */
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #f5f5f5;
+  overflow: hidden;
+}
+
+/* Background image */
+#background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('background.png');
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.5);
+  z-index: -2;
+}
+
+/* Starry overlay */
+#star-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: -1;
+}
+#star-container .star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  animation: twinkle 4s infinite ease-in-out;
+}
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 1; }
+}
+
+/* Overlay screens */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.6);
+  text-align: center;
+  padding: 1rem;
+  z-index: 10;
+}
+.overlay.hidden {
+  display: none;
+}
+
+/* Start screen */
+.start-content {
+  max-width: 600px;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+.start-content img {
+  width: 140px;
+  margin-bottom: 1rem;
+}
+.start-content h1 {
+  margin: 0.5rem 0;
+  font-size: 2rem;
+  color: #ffeb8b;
+}
+.start-content p {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+.start-content button {
+  background: #f7b733;
+  color: #000;
+  border: none;
+  padding: 0.7rem 1.4rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.start-content button:hover {
+  background: #ffdf6e;
+}
+
+/* Game container */
+#game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100%;
+  padding-top: 2rem;
+  text-align: center;
+}
+#game-container.hidden {
+  display: none;
+}
+
+/* Header */
+#game-container .header h2 {
+  margin: 0;
+  font-size: 2rem;
+  color: #ffeb8b;
+}
+#game-container .header .instructions {
+  margin: 0.5rem 0 1.5rem;
+  font-size: 1rem;
+  max-width: 700px;
+  color: #d1e6ff;
+}
+
+/* HP bar */
+.hp-bar-wrapper {
+  width: 80%;
+  max-width: 500px;
+  margin: 0.5rem 0;
+}
+.hp-label {
+  font-size: 0.9rem;
+  margin-bottom: 0.2rem;
+}
+.hp-bar {
+  width: 100%;
+  height: 12px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.hp-bar .hp-fill {
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, #ff6b6b, #ff8e72);
+  transition: width 0.5s ease;
+}
+
+/* Battle visual: boss image and player lives */
+.battle-visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+#boss-image {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.5));
+}
+.player-lives {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-top: 0.5rem;
+  justify-content: center;
+}
+.player-lives .heart {
+  font-size: 1.6rem;
+  color: #ff758f;
+  transition: filter 0.3s;
+}
+.player-lives .heart.lost {
+  filter: grayscale(1) brightness(0.5);
+}
+
+/* Retry button */
+.retry-btn {
+  margin-top: 1rem;
+  background: #f7b733;
+  color: #000;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.retry-btn:hover {
+  background: #ffdf6e;
+}
+
+/* Task progress */
+.task-progress {
+  margin: 0.5rem 0 1rem;
+  font-size: 1rem;
+  color: #9ad1ff;
+}
+
+/* Question area */
+#question-area {
+  font-size: 1.4rem;
+  max-width: 800px;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+#question-area.correct {
+  border: 2px solid #8bc34a;
+}
+#question-area.incorrect {
+  border: 2px solid #e57373;
+}
+
+/* Options area */
+#options-area {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  max-width: 600px;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+.option-btn {
+  background: #3b5db5;
+  color: #fff;
+  border: none;
+  padding: 0.7rem 1rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s;
+  width: 100%;
+}
+.option-btn:hover {
+  background: #5c7ce6;
+}
+
+/* Explanation */
+#explanation {
+  font-size: 0.95rem;
+  margin-top: 0.5rem;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 0.6rem 1rem;
+  border-radius: 4px;
+  max-width: 700px;
+}
+#explanation.hidden {
+  display: none;
+}
+
+/* Finish screen */
+#finish-screen .finish-content {
+  background: rgba(0, 0, 0, 0.85);
+  padding: 2rem;
+  border-radius: 8px;
+  max-width: 650px;
+  text-align: center;
+}
+#finish-screen .finish-content h2 {
+  margin-top: 0;
+  color: #ffeb8b;
+  font-size: 2rem;
+}
+#finish-screen .finish-content p {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+.cta-text {
+  font-style: italic;
+  color: #d1e6ff;
+  margin-top: 1rem;
+}
+
+/* General progress bar */
+.general-progress {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+.general-progress-bar {
+  width: 70%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.general-progress-fill {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, #f7b733, #ffdf6e);
+  border-radius: 4px;
+}
+.general-progress-text {
+  font-size: 0.9rem;
+  color: #ffeb8b;
+}
+
+/* CTA buttons */
+.cta-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+.cta-buttons a {
+  background: #3b5db5;
+  color: #fff;
+  text-decoration: none;
+  padding: 0.6rem 1rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  transition: background 0.3s;
+}
+.cta-buttons a:hover {
+  background: #5c7ce6;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .start-content, #finish-screen .finish-content {
+    padding: 1rem;
+  }
+  .start-content h1 {
+    font-size: 1.6rem;
+  }
+  #game-container .header h2 {
+    font-size: 1.6rem;
+  }
+  #question-area {
+    font-size: 1.2rem;
+  }
+  .option-btn {
+    font-size: 0.9rem;
+    padding: 0.6rem 0.8rem;
+  }
+  .hp-bar-wrapper {
+    width: 90%;
+  }
+  .general-progress-bar {
+    width: 80%;
+  }
+}
